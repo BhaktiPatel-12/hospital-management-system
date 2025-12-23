@@ -18,7 +18,7 @@ This is a project helps to reduce the poor record tracking and scheduling issues
 
 **Work Flow of the System**
 
-1.User login through login page<br>
-2.if user is the patient than patient can view their profile also past hostory and they can booked the appointment with doctors for their treatments or for regular check-ups.<br>
-3.if user is the doctor than doctor can view the list of booked patients and their past history<br>
-4.if user is the admin than admin keeps the track of whole system and interaction between doctor and patients<br>
+**1.** User login through login page<br>
+**2.** if user is the patient than patient can view their profile also past hostory and they can booked the appointment with doctors for their treatments or for regular check-ups.<br>
+**3.** if user is the doctor than doctor can view the list of booked patients and their past history<br>
+**4.** if user is the admin than admin keeps the track of whole system and interaction between doctor and patients<br>
