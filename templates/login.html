@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- header page -->
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">About Us</a></li>
+                    <li><a href="{{ url_for('index') }}">Connections</a></li>
+                    <li><a href="#{{ url_for('index') }}">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="login-btn">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- content for login page -->
+    <main>
+        <section id="loginSection">
+            <div class="login-form-container">
+                <h2>Login to Your Account</h2>
+                <form action="{{ url_for('login') }}" method="POST" class="login-form">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="enter username same as register" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="enter password" required>
+                    </div>
+                    <button type="submit" class="login-btn-submit">Login</button>
+                    <div>Do not have an account? <a href="{{ url_for('register') }}">Register</a></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer page -->
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email: </strong> support@hospital.com | <strong>Phone:</strong> +123-456-7890</p>
+        </div>
+    </footer>
+</body>
+</html>

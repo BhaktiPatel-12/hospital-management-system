@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctor Page - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a>
+                            <h3>{{ patient.patient_name }} Past History</h3>
+                        </a></li>
+                </ul>
+            </nav>
+            <div class="button-container">
+                <a href="{{ url_for('patient_dashboard') }}">
+                    <button type="button" class="nav-button"><b>Back</b></button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="doctor-info">
+            <h2>Treatment History of {{ patient.patient_name }}</h2>
+
+            {% if treatments %}
+            <table class="doctor-appointments-table">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Date</th>
+                        <th>Tests Done</th>
+                        <th>Diagnosis</th>
+                        <th>Prescription</th>
+                        <th>Medicines</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for treatment, appt in treatments %}
+                    <tr>
+                        <td>{{ appt.appointment_id }}</td>
+                        <td>{{ appt.date }}</td>
+                        <td>{{ treatment.test_done }}</td>
+                        <td>{{ treatment.diagnosis }}</td>
+                        <td>{{ treatment.prescription }}</td>
+                        <td>{{ treatment.medicines }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% else %}
+            <p>No past treatments found for this patient.</p>
+            {% endif %}
+        </div>
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email: </strong> support@hospital.com | <strong>Phone:</strong> +123-456-7890</p>
+        </div>
+    </footer>
+</body>
+</html>

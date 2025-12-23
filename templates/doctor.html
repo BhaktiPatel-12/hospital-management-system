@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctor Page - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2 style="color: #6C1E2B;">Welcome, {{ doctor_name }}</h2>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+                <form action="{{ url_for('doctor_availability') }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Check Availability</b></button>
+                </form>
+
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="nav-button"><b>Logout</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <br>
+        <div class="doctor-info">
+            <h2>{{doctor_name}} Appointments</h2>
+
+            {% if appointments %}
+            <table class="doctor-appointments-table">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Patient ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for appt, patient in appointments %} <!--here we are assesing this in tuple format-->
+                    <tr>
+                        <td>{{ appt.appointment_id }}</td>
+                        <td>{{ patient.patient_name }}</td>
+                        <td class="date-column">{{ appt.date }}</td>
+                        <td class="time-column">{{ appt.time }}</td>
+                        <td>{{ appt.status }}</td>
+
+                        <td>
+                            <div class="doctor-actions">
+                                <form action="{{ url_for('start_treatment', appointment_id=appt.appointment_id) }}"
+                                    method="GET">
+                                    <button class="doctor-btn">Treatment</button>
+                                </form>
+
+                                <form action="{{ url_for('complete_appointment', appointment_id=appt.appointment_id) }}"
+                                    method="POST">
+                                    <button type="submit" class="doctor-btn-complete">Mark as Complete</button>
+                                </form>
+
+                                <form
+                                    action="{{ url_for('cancel_appointment_by_doctor', appointment_id=appt.appointment_id) }}"
+                                    method="POST">
+                                    <button class="doctor-btn">Cancel</button>
+                                </form>
+                            </div>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% else %}
+            <p>No appointments found.</p>
+            {% endif %}
+        </div>
+
+        <br>
+        <div class="doctor-info">
+            <h2>Assigned Patients</h2>
+
+            <table class="doctor-appointments-table">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Previous Data</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for patient in completed_patients %}
+                    <tr>
+                        <td>{{ patient.patient_name }}</td>
+                        <td>
+                            <form action="{{ url_for('past_history', patient_id=patient.patient_id) }}" method="GET">
+                                <button type="submit" class="doctor-btn">Past History</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

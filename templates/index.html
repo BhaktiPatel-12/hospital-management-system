@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">                <!--link connected to my style sheet for CSS-->
+</head>
+
+<body>
+    <!-- header page-->
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#aboutUs">About Us</a></li>
+                    <li><a href="#connections">Connections</a></li>
+                    <li><a href="#contactUs">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="login-btn">
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="aboutUs">
+            <div class="about-frame">
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='hospital.jpg') }}" alt="Hospital Image">
+                </div>
+                <p>We are dedicated to providing exceptional healthcare services to our patients through a combination
+                    of skilled professionals, state-of-the-art technology, and a patient-centered approach. We pride ourselves on having
+                    a strong, compassionate team of doctors and healthcare professionals who are committed to delivering the highest
+                    quality care. Our team consists of experienced specialists from various fields, including cardiology, orthopedics,
+                    pediatrics, neurology, and more. With a focus on continuous professional development, our doctors stay updated with the
+                    latest medical advancements, ensuring they provide the best possible treatment to every patient.</p>
+            </div>
+        </section>
+
+        <section id="connections">
+            <div class="second_frame">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='doctors.avif') }}">
+                </div>
+                <p>We are dedicated to delivering exceptional healthcare through a team of highly qualified specialists,
+                    advanced medical technology, and a compassionate, patient-focused approach. Our doctors are leaders
+                    in their respective fields, holding advanced degrees and extensive clinical experience across a wide range of
+                    specialties — including Cardiology, Orthopedics, Pediatrics, Neurology, Internal Medicine, and more.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer page -->
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email: </strong> support@hospital.com | <strong>Phone:</strong> +123-456-7890</p>
+        </div>
+    </footer>
+</body>
+
+</html>

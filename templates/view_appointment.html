@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Your Appointments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a>
+                            <h2>Upcoming Appointment</h2>
+                        </a></li>
+                </ul>
+            </nav>
+            <div class="button-container">
+                <form action="{{ url_for('patient_dashboard') }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Back</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    {% if appointments %}
+    <table class="appointment-table">
+        <tr>
+            <th>Appointment ID</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for app in appointments %}
+        <tr>
+            <td>{{ app.appointment_id }}</td>
+            <td>{{ app.doctor_name }}</td>
+            <td>{{ app.date }}</td>
+            <td>{{ app.time }}</td>
+            <td>{{ app.status.value }}</td>
+
+            <!-- Cancel Button -->
+            <td>
+                <form action="{{ url_for('cancel_appointment', appointment_id=app.appointment_id) }}" method="POST"
+                    onsubmit="return confirm('Are you sure you want to cancel this appointment?');">
+                    <button type="submit"
+                        style="background-color:darkred; color:white; padding:5px; border:none; border-radius:5px;">
+                        Cancelled
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3 style="text-align:center;">No Appointments Found</h3>
+    {% endif %}
+
+    <footer>
+        <div class="container">
+            <p>Support: support@hospital.com | Phone: +123-456-7890</p>
+        </div>
+    </footer>
+</body>
+
+</html>

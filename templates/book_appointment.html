@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <style>
+        .not-available {
+            background-color: #D1D1D1;
+            color: #A0A0A0;
+            cursor: not-allowed;
+        }
+        .selected {
+            background-color: #6C1E2B;
+            color: #F8D4D8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a><h2>Booking Appointment</h2></a></li>
+                </ul>
+            </nav>
+            <div class="button-container">
+                <form action="{{ url_for('patient_dashboard') }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Back</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2>Book Appointment</h2>
+        <form action="{{ url_for('book_appointment') }}" method="POST">
+            <!-- Patient info (hidden) -->
+            <input type="hidden" name="patient_id" value="{{ patient_name }}">
+
+            <div class="form-group">
+                <label for="doctor_id">Choose a Doctor:</label>
+                <select name="doctor_name" required>
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.doctor_name }}">{{ doctor.doctor_name }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="date">Appointment Date:</label>
+                <input type="date" name="date" required min="{{ today }}">
+                <!-- <input type="date" name="date" required id="appointment-date"> -->
+            </div>
+
+            <div class="form-group">
+                <label for="time">Choose Time Slot:</label>
+                <select name="time" required id="time-slot">
+                    <option value="">Select a Date First</option>
+                    <option>9:00 AM to 10:00 AM</option>
+                    <option>10:00 AM to 11:00 AM</option>
+                    <option>11:00 AM to 12:00 PM</option>
+                    <option>12:00 PM to 1:00 PM</option>
+                    <option>4:00 PM to 5:00 PM</option>
+                    <option>5:00 PM to 6:00 PM</option>
+                    <option>6:00 PM to 7:00 PM</option>
+                    <option>7:00 PM to 8:00 PM</option>
+                </select>
+            </div>
+
+            <button type="submit" class="nav-button">Book Appointment</button>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Support: support@hospital.com | Phone: +123-456-7890</p>
+        </div>
+    </footer>
+</body>
+</html>

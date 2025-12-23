@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Treatment - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h1 style="color: #6C1E2B;">Add Treatment</h1>
+                    </li>
+                </ul>
+            </nav>
+            <a href="{{ url_for('doctor_dashboard') }}">
+                <button type="button" class="nav-button"><b>Back</b></button>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="treatment-container">
+
+            <div class="info-box">
+                <b>Patient:</b> {{ patient.patient_name }} <br>
+                <b>Appointment ID:</b> {{ appointment.appointment_id }} <br>
+                <b>Date:</b> {{ appointment.date }} <br>
+                <b>Time:</b> {{ appointment.time }}
+            </div>
+
+            <form method="POST">
+                <label>Tests Done</label>
+                <textarea name="test_done" placeholder="Enter tests performed..." required></textarea>
+
+                <label>Diagnosis</label>
+                <textarea name="diagnosis" placeholder="Enter diagnosis..." required></textarea>
+
+                <label>Prescription</label>
+                <textarea name="prescription" placeholder="Enter prescription details..." required></textarea>
+
+                <label>Medicines</label>
+                <textarea name="medicines" placeholder="Enter medicines..." required></textarea>
+
+                <button type="submit" class="submit-btn">Save Treatment</button>
+            </form>
+        </div>
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

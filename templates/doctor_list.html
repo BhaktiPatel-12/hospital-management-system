@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctors List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2>Avialable Doctors in {{ department.department_name }}</h2>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+                <a href="{{ url_for('patient_dashboard') }}">
+                    <button class="nav-button"><b>Back</b></button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="doctorSection">
+            <div class="doctor-info">
+
+                <table class="doctor-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Specialization</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for doc in doctors %}
+                        <tr>
+                            <td>{{ doc.doctor_name }}</td>
+                            <td>{{ doc.specialization }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

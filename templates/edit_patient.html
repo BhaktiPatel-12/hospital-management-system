@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2 style="color: #FCF5EE">Edit Patient</h2>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="nav-button"><b>Logout</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="appointment-actions">
+            <form method="POST">
+                <label>Patient Name:</label>
+                <input type="text" name="patient_name" value="{{ patient.patient_name }}" required><br><br>
+
+                <label>Password:</label>
+                <input type="text" name="password" value="{{ patient.password }}" required><br><br>
+
+                <button class="nav-button" type="submit">Save</button>
+            </form>
+        </section>
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+/* General Reset and Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #FCF5EE, #F8D4D8);
+    color: #6C1E2B;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #E89CA5, #6C1E2B);
+    color: #FCF5EE;
+    padding: 30px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Navigation */
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li:first-child {
+    margin-left: 0;
+}
+
+nav ul li a {
+    color: #6C1E2B;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease, transform 0.3s ease, padding-bottom 0.3s ease;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #F8D4D8;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover {
+    color: #F8D4D8;
+    transform: translateY(-3px);
+    padding-bottom: 12px;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.login-btn a {
+    display: inline-block;
+    background-color: #E89CA5; /* Medium pink */
+    color: #FCF5EE; /* Light pink text */
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn a:hover {
+    background-color: #6C1E2B; /* Deep burgundy on hover */
+    transform: translateY(-2px);
+    color: #F8D4D8; /* Soft pink text on hover */
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #FCF5EE;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;   
+}
+
+.about-frame {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.second_frame {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+section {
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F8D4D8, #FCF5EE);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+p {
+    font-size: 1.28rem;
+    color: #6C1E2B;
+    line-height: 1.7;
+    font-weight: 200;
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Section Hover Animation */
+section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styles */
+footer {
+    background: #6C1E2B;
+    color: #FCF5EE;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer p {
+    color: #FCF5EE;
+    font-size: 1.2rem;
+    white-space: normal;
+    word-break: break-word;
+}
+
+footer p strong {
+    color: #F8D4D8;
+    font-weight: 200px;
+}
+
+#loginSection, #registerSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* Control the maximum width of the form */
+    height: 80%; /* Set the height to 80% of the viewport to maintain square balance */
+    background-color: #FCF5EE;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.register-form-container, .login-form-container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    color: #6C1E2B;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #6C1E2B;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E89CA5;
+    border-radius: 8px;
+    background-color: #F8D4D8;
+    font-size: 1rem;
+    color: #6C1E2B;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #6C1E2B;
+    outline: none;
+}
+
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E89CA5;
+    border-radius: 8px;
+    background-color: #F8D4D8;
+    font-size: 1rem;
+    color: #6C1E2B;
+    transition: border-color 0.3s ease;
+}
+
+.input-group select:focus {
+    border-color: #6C1E2B;
+    outline: none;
+}
+
+.input-group select:hover {
+    background-color: #FCE4EC;
+}
+
+/* Submit Button */
+.login-btn-submit, .register-btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #E89CA5; /* Medium pink */
+    color: #FCF5EE;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn-submit:hover, .register-btn-submit:hover {
+    background-color: #6C1E2B; /* Deep burgundy */
+    transform: translateY(-2px);
+}

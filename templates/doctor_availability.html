@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Doctor Page - Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <style>
+        /* Custom styles for the availability chart */
+        .calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #F8D4D8;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .availability-table {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .availability-table th,
+        .availability-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #E89CA5;
+            background-color: #FCF5EE;
+        }
+
+        .availability-table th {
+            background-color: #6C1E2B;
+            color: #F8D4D8;
+        }
+
+        .availability-table td {
+            cursor: pointer;
+            background-color: #E89CA5;
+            color: #FCF5EE;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .availability-table td:hover {
+            background-color: #6C1E2B;
+            color: #F8D4D8;
+            transform: translateY(-2px);
+        }
+
+        .availability-table td.selected {
+            background-color: #6C1E2B;
+            color: #F8D4D8;
+            transform: translateY(-2px);
+        }
+
+        .availability-table td.not-available {
+            background-color: #D1D1D1;
+            color: #A0A0A0;
+            cursor: not-allowed;
+        }
+
+        .date-info {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li><a><h2>Doctor Availability</h2></a></li>
+                </ul>
+            </nav>
+            <div class="button-container">
+                <form action="{{ url_for('doctor_dashboard') }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Back</b></button>
+                </form>
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="nav-button"><b>Logout</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- content -->
+    <main>
+        <!-- Doctor details and booking section -->
+        <section id="doctorDetails">
+            <div class="doctor-info">
+                <!-- Availability Chart -->
+                <div class="calendar-container">
+                    <h2>Availability Chart for next 7 Days</h2>
+
+                    <div class="date-info" id="dateRange"></div>
+
+                    <!-- Availability Table -->
+                    <table class="availability-table" id="availabilityTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Morning (9 AM - 12 PM)</th>
+                                <th>Evening (1 PM - 5 PM)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Days and slots will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email: </strong> support@hospital.com | <strong>Phone:</strong> +123-456-7890</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to generate the next 7 days with morning and evening slots
+        const availabilityTable = document.getElementById('availabilityTable').getElementsByTagName('tbody')[0];
+        const dateRangeDiv = document.getElementById('dateRange');
+
+        function generateAvailabilityChart() {
+            const currentDate = new Date();
+            let rowsHTML = '';
+            const today = new Date();
+            const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            // Generate table rows for the next 7 days
+            for (let i = 0; i < 7; i++) {
+                let slotDate = new Date(currentDate);
+                slotDate.setDate(currentDate.getDate() + i);
+                
+                let dayName = dayNames[slotDate.getDay()];
+                let formattedDate = slotDate.toLocaleDateString();
+                
+                // Generate morning and evening slots
+                let morningSlot = generateSlot(i, 'morning');
+                let eveningSlot = generateSlot(i, 'evening');
+
+                rowsHTML += `
+                    <tr>
+                        <td>${dayName} ${formattedDate}</td>
+                        <td class="${morningSlot.class}" onclick="toggleSlot(this)">${morningSlot.text}</td>
+                        <td class="${eveningSlot.class}" onclick="toggleSlot(this)">${eveningSlot.text}</td>
+                    </tr>
+                `;
+            }
+
+            // Set date range
+            let startDate = new Date();
+            let endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 6);
+            dateRangeDiv.innerHTML = `From ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`;
+
+            // Insert generated rows into the table
+            availabilityTable.innerHTML = rowsHTML;
+        }
+
+        function generateSlot(dayIndex, timeOfDay) {
+            // Example: A slot may be available or not
+            let isAvailable = Math.random() > 0.3;  // 70% chance to be available
+            let slotText = isAvailable ? (timeOfDay === 'morning' ? 'Available' : 'Available') : 'Not Available';
+            let slotClass = isAvailable ? '' : 'not-available';
+            return { text: slotText, class: slotClass };
+        }
+
+        function toggleSlot(cell) {
+            if (cell.classList.contains('not-available')) return;  // Do nothing if slot is not available
+            cell.classList.toggle('selected');
+            cell.textContent = cell.classList.contains('selected') ? 'Booked' : 'Available';
+        }
+
+        // Initialize the availability chart when the page loads
+        window.onload = function() {
+            generateAvailabilityChart();
+        };
+    </script>
+</body>
+</html>

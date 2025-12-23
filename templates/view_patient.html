@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patient Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2 style="color: #6C1E2B">{{patient.patient_name}} Details</h2>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+                <a href="{{ url_for('admin_dashboard') }}">
+                    <button type="button" class="nav-button"><b>Back to Dashboard</b></button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="appointment-actions">
+            <div class="container">
+                <h2><strong>Patient ID:</strong> {{ patient.patient_id }}</h2>
+                <h2><strong>Name:</strong> {{ patient.patient_name }}</h2>
+                <h2><strong>Email:</strong> {{ patient.email }}</h2>
+                <h2><strong>Contact No:</strong> {{ patient.contact_no }}</h2>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

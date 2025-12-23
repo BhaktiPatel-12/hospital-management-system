@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2 style="color: #6C1E2B">Edit Patient Profile</h2>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="appointment-actions">
+            <div class="container">
+                <form action="{{ url_for('edit_profile', patient_id=patient.patient_id) }}" method="POST">
+
+                    <label>Patient Name:</label>
+                    <input type="text" name="patient_name" value="{{ patient.patient_name }}" required><br><br>
+
+                    <label>Email:</label>
+                    <input type="email" name="email" value="{{ patient.email }}"><br><br>
+
+                    <label>Contact No:</label>
+                    <input type="text" name="contact_no" value="{{ patient.contact_no }}"><br><br>
+
+                    <label>Password:</label>
+                    <input type="text" name="password" value="{{ patient.password }}" required><br><br>
+
+                    <button class="nav-button" type="submit">Update</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

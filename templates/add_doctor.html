@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Doctor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <h2 style="color: #FCF5EE">Add New Doctor</h2>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+                <a href="{{ url_for('admin_dashboard') }}" class="nav-button">
+                    Back to Dashboard
+                </a>
+            </div>
+    </header>
+
+    <main>
+        <section id="appointment-actions">
+            <div class="container">
+                <form method="POST">
+
+                    <label>Doctor Name</label>
+                    <input type="text" name="doctor_name" required><br><br>
+
+                    <label>Department</label>
+                    <select name="department_id" required>
+                        <option value="">Select Department</option>
+                        {% for d in departments %}
+                        <option value="{{ d.department_id }}">{{ d.department_name }}</option>
+                        {% endfor %}
+                    </select><br><br>
+
+                    <label>Specialization</label>
+                    <input type="text" name="specialization" required><br><br>
+
+                    <button class="nav-button" type="submit">Add Doctor</button>
+
+                </form>
+
+                <br>
+
+            </div>
+        </section>
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

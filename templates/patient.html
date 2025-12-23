@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patient Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav class="main-nav">
+                <ul>
+                    <b><li><h2 style="color: #6C1E2B;">Welcome, {{ patient_name }}</h2></li></b>
+                </ul>
+            </nav>
+
+            <div class="button-container">
+
+                <form action="{{ url_for('edit_profile', patient_id=session['patient_id']) }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Edit Profile</b></button>
+                </form>
+
+                <form action="{{ url_for('history', patient_id=session['patient_id']) }}" method="GET">
+                    <button type="submit" class="nav-button"><b>Past History</b></button>
+                </form>
+
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="nav-button"><b>Logout</b></button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="departmentSection">
+            <div class="doctor-info">
+                <h3>Available Departments</h3>
+
+                <table class="doctor-table">
+                    <thead>
+                        <tr>
+                            <th>Department Name</th>
+                            <th>View Doctors</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for dep in departments %}
+                        <tr>
+                            <td>{{ dep.department_name }}</td>
+                            <td>
+                                <a href="{{ url_for('view_doctors', department_id=dep.department_id) }}">
+                                    <button class="nav-button">View Details</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <br>
+        <section id="appointment-actions">
+            <div class="doctor-info">
+                <div class="button-container">
+
+                    <form action="{{ url_for('book_appointment') }}" method="GET">
+                        <button type="submit" class="nav-button"><b>Book an Appointment</b></button>
+                    </form>
+
+                    <form action="{{ url_for('view_appointment') }}" method="GET">
+                        <button type="submit" class="nav-button"><b>View Appointment</b></button>
+                    </form>
+
+                    <form action="{{ url_for('check_availability') }}" method="GET">
+                        <button type="submit" class="nav-button"><b>Check Doctor Availability</b></button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer id="contactUs">
+        <div class="container">
+            <p><strong>Email:</strong> support@hospital.com |
+                <strong>Phone:</strong> +123-456-7890
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
